@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+    <div id="main">
+        静态文件
+    </div>
+    <script>
+        // fetch("http://localhost:3000/user").then(res=>res.json()).then(data=>{
+        //     console.log(data)
+        // })
+        const app=Vue.createApp({
+            data() {
+                return {
+                    heroList:[]
+                }
+            }, 
+            created() {
+                this.getHeroList()
+            },
+            methods: {
+                getHeroList(){
+                    fetch("https://game.gtimg.cn/images/lol/act/img/tft/js/chess.js?v=2712400").then(res=>res.json()).then(data=>{
+                        this.heroList=data.data.map(item =>{
+                            return {
+                                ...item,
+                                heroImg:`http://game.gtimg.cn/images/lol/tft/cham-icons/624x318/${item.TFTID}.jpg`
+                            }
+                        })
+                })
+                }
+            },
+            template:`
+                    <table border="1" align="center">
+                        <caption>英雄介绍表</caption>
+                        <tr>
+                            <th style="width:120px">英雄</th>
+                            <th style="width:100px">名字</th>
+                            <th style="width:180px">羁绊</th>
+                            <th style="width:80px">技能</th>
+                            <th style="width:250px">技能介绍</th>
+                            <th style="width:50px">费用</th>
+                        </tr>
+                        <tr v-for="item in heroList">
+                            <td align="center" ><img :src="item.heroImg" width="120" height="80"/></td>
+                            <td align="center">{{item.displayName}}</td>
+                            <td align="center">{{item.jobs}}/{{item.races}}</td>
+                            <td align="center" ><img :src="item.skillImage"/></td>
+                            <td align="center">{{item.skillType}}:{{item.skillIntroduce}}</td>
+                            <td align="center">{{item.price}}</td>
+                        </tr>
+                    </table>
+                `
+        })
+        const v=app.mount("#main")
+    </script>
+</body>
+</html>

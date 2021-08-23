@@ -1,0 +1,46 @@
+###
+@url = http://localhost:3001/
+@json = Content-Type: application/json
+
+###主页
+GET  {{url}}
+
+###注册
+POST {{url}}register
+{{json}}
+ 
+{
+    "username":"blank4",
+    "password":"12345"
+}
+
+###登录
+POST {{url}}login
+{{json}}
+
+{
+    "username":"blank4",
+    "password":"12345"
+}
+
+###用户列表
+GET {{url}}user
+
+###个人信息
+GET {{url}}profile
+Authorization: Basic eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMDI1YjljOTQ3NDI0NDU3Y2NhMTUzZCIsImlhdCI6MTYyNzU0NDYwMH0.svn8ISHFkmsZAtwOHFAXF14_Gi9Z7ha6jfiq8CvSCqc
+
+###编辑用户资料
+PUT  {{url}}user/eidt
+{{json}}
+Authorization: Basic eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMDI1YjljOTQ3NDI0NDU3Y2NhMTUzZCIsImlhdCI6MTYyNzU0NDYwMH0.svn8ISHFkmsZAtwOHFAXF14_Gi9Z7ha6jfiq8CvSCqc
+
+
+{
+    "username":"blank4",
+    "password":"12345"
+}
+
+###删除用户
+DELETE {{url}}user/delete
+Authorization: Basic eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMDI1YjljOTQ3NDI0NDU3Y2NhMTUzZCIsImlhdCI6MTYyNzU0NDYwMH0.svn8ISHFkmsZAtwOHFAXF14_Gi9Z7ha6jfiq8CvSCqc

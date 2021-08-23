@@ -1,0 +1,30 @@
+###
+@url = http://localhost:3000/
+@json = Content-Type: application/json
+###
+GET {{url}}
+
+###列表
+GET {{url}}products
+
+### 详情
+GET {{url}}products/6101225e3ab9b00e242d6a47
+
+### 添加
+POST {{url}}products
+{{json}}
+
+{
+    "title":"blank5"
+}
+
+###编辑
+PUT {{url}}products/6101225e3ab9b00e242d6a47
+{{json}}
+
+{
+    "title":"blank5"
+}
+
+###删除
+DELETE {{url}}products/6101225e3ab9b00e242d6a47
